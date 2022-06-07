@@ -1,0 +1,1352 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="7-7mybits高级, gray">
+    <meta name="description" content="教学目标
+延迟加载
+动态SQL - [重点]
+MyBatis缓存 - [了解]
+MyBatis模拟测试讲解
+
+1.延迟加载(1) 延迟加载概念:12lazy-loadding 要用到数据时才进行加载，不需要用到数据时就不加载数据。延迟加载也">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>7-7mybits高级 | blogToGray</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">blogToGray</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">blogToGray</div>
+        <div class="logo-desc">
+            
+            飞者非鸟,潜者非鱼
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">7-7mybits高级</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/java%E9%AB%98%E7%BA%A7/">
+                                <span class="chip bg-color">java高级</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/page2/" class="post-category">
+                                page2
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-06-01
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="教学目标"><a href="#教学目标" class="headerlink" title="教学目标"></a>教学目标</h1><ul>
+<li>延迟加载</li>
+<li>动态SQL - [重点]</li>
+<li>MyBatis缓存 - [了解]</li>
+<li>MyBatis模拟测试讲解</li>
+</ul>
+<h1 id="1-延迟加载"><a href="#1-延迟加载" class="headerlink" title="1.延迟加载"></a>1.延迟加载</h1><h3 id="1-延迟加载概念"><a href="#1-延迟加载概念" class="headerlink" title="(1) 延迟加载概念:"></a>(1) 延迟加载概念:</h3><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lazy-loadding </span><br><span class="line">要用到数据时才进行加载，不需要用到数据时就不加载数据。延迟加载也称懒加载</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-N-1查询分析"><a href="#2-N-1查询分析" class="headerlink" title="(2) N+1查询分析"></a>(2) N+1查询分析</h3><p>要想实现延迟加载，则不能使用连接查询，需要将连接查询更改为N+1查询方式:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查询部门:</span><br><span class="line">    select * from dept</span><br><span class="line">    </span><br><span class="line">根据每个部门id，查询该部门对应的员工列表</span><br><span class="line">   select * from emp where dept_id=#&#123;deptId&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现N+1查询 , SQL映射文件配置:</p>
+<p>step1: EmpDao.java和EmpDao.xml</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据部门id查询该部门的员工列表</span></span><br><span class="line">List&lt;Emp&gt; <span class="title function_">getEmpListByDeptId</span><span class="params">(Integer deptId)</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">&lt;!--执行N+1查询--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;empResultMap2&quot;</span> <span class="attr">type</span>=<span class="string">&quot;Emp&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;EMP_ID&quot;</span> <span class="attr">property</span>=<span class="string">&quot;empId&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;ENAME&quot;</span> <span class="attr">property</span>=<span class="string">&quot;ename&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;HIREDATE&quot;</span> <span class="attr">property</span>=<span class="string">&quot;hiredate&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;JOB&quot;</span> <span class="attr">property</span>=<span class="string">&quot;job&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;SALARY&quot;</span> <span class="attr">property</span>=<span class="string">&quot;salary&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getEmpListByDeptId&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;empResultMap2&quot;</span>&gt;</span></span><br><span class="line">    select * from emp where dept_id=#&#123;deptId&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>step2:DeptDao.java 和 DeptDao.xml</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据id查询部门</span></span><br><span class="line">   Dept <span class="title function_">getById</span><span class="params">(Integer deptId)</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--Dept结果集映射--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;deptResultMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;Dept&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;DEPT_ID&quot;</span> <span class="attr">property</span>=<span class="string">&quot;deptId&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;DNAME&quot;</span> <span class="attr">property</span>=<span class="string">&quot;dname&quot;</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">           根据column指定的列值,传递给select指定的sql语句,将查询结果封装到属性 :empList</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">&quot;empList&quot;</span> <span class="attr">column</span>=<span class="string">&quot;DEPT_ID&quot;</span> <span class="attr">select</span>=<span class="string">&quot;com.woniu.dao.EmpDao.getEmpListByDeptId&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--根据部门id查询部门及员工信息  连接查询--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getById&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;deptResultMap&quot;</span>&gt;</span></span><br><span class="line">    SELECT *</span><br><span class="line">    FROM dept</span><br><span class="line">    WHERE dept_id=#&#123;deptId&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>step3: 测试类DeptDaoTest.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testGetById()&#123;</span><br><span class="line">    Dept dept = deptDao.getById(1);</span><br><span class="line">    System.out.println(dept);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>step4:查看输出日志</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">12:30:54.235 [main] DEBUG com.woniu.dao.DeptDao.getById - ==&gt;  Preparing: SELECT * FROM dept WHERE dept_id=? </span><br><span class="line">12:30:54.290 [main] DEBUG com.woniu.dao.DeptDao.getById - ==&gt; Parameters: 1(Integer)</span><br><span class="line">12:30:54.335 [main] DEBUG c.w.dao.EmpDao.getEmpListByDeptId - ====&gt;  Preparing: select * from emp where dept_id=? </span><br><span class="line">12:30:54.340 [main] DEBUG c.w.dao.EmpDao.getEmpListByDeptId - ====&gt; Parameters: 1(Integer)</span><br><span class="line">12:30:54.340 [main] DEBUG c.w.dao.EmpDao.getEmpListByDeptId - &lt;====      Total: 2</span><br><span class="line">12:30:54.345 [main] DEBUG com.woniu.dao.DeptDao.getById - &lt;==      Total: 1</span><br><span class="line">Dept&#123;deptId=1, dname=&#x27;人事部&#x27;, empList=[Emp&#123;empId=1, ename=&#x27;Jack&#x27;, hiredate=&#x27;2022-03-18&#x27;, job=&#x27;职员&#x27;, salary=5000, dept=&#x27;null&#x27;&#125;, Emp&#123;empId=3, ename=&#x27;李文龙&#x27;, hiredate=&#x27;2022-01-10&#x27;, job=&#x27;老板&#x27;, salary=25000, dept=&#x27;null&#x27;&#125;]&#125;</span><br><span class="line">12:30:54.345 [main] DEBUG o.a.i.t.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@2dc54ad4]</span><br><span class="line">12:30:54.345 [main] DEBUG o.a.i.t.jdbc.JdbcTransaction - Closing JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@2dc54ad4]</span><br><span class="line">12:30:54.345 [main] DEBUG o.a.i.d.pooled.PooledDataSource - Returned connection 767904468 to pool.</span><br><span class="line">测试成功完成...</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-实现延迟加载"><a href="#3-实现延迟加载" class="headerlink" title="(3) 实现延迟加载"></a>(3) 实现延迟加载</h3><p><strong>局部配置:</strong></p>
+<p>在需要延迟加载select查询的resultMap中关联的数据 </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">&lt;!--Dept结果集映射--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;deptResultMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;Dept&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;DEPT_ID&quot;</span> <span class="attr">property</span>=<span class="string">&quot;deptId&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;DNAME&quot;</span> <span class="attr">property</span>=<span class="string">&quot;dname&quot;</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">           根据column指定的列值,传递给select指定的sql语句,将查询结果封装到属性 :empList</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">&quot;empList&quot;</span> <span class="attr">fetchType</span>=<span class="string">&quot;lazy&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">column</span>=<span class="string">&quot;DEPT_ID&quot;</span> <span class="attr">select</span>=<span class="string">&quot;com.woniu.dao.EmpDao.getEmpListByDeptId&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试延迟加载效果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testGetById</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">Dept</span> <span class="variable">dept</span> <span class="operator">=</span> deptDao.getById(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//System.out.println(dept); //只要访问整个对象,都会将所关联的数据对应的查询select执行</span></span><br><span class="line">    System.out.println(dept.getDeptId()+<span class="string">&quot;,&quot;</span>+dept.getDname());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>全局配置:</strong>  mybatis-config.xml</p>
+<p> 针对项目中多处的N+1查询实行按需加载</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--开启延迟加载的功能 true: 开启  false 不开启--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;lazyLoadingEnabled&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--控制具有懒加载特性的对象的属性的加载情况 :</span></span><br><span class="line"><span class="comment">          true表示如果对具有懒加载特性的对象的任意调用会导致这个对象的完整加载，</span></span><br><span class="line"><span class="comment">          false表示每种属性按照需要加载</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;aggressiveLazyLoading&quot;</span> <span class="attr">value</span>=<span class="string">&quot;false&quot;</span> /&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--lazyLoadTriggerMethods参数来指定需要加载延迟对象的方法调用</span></span><br><span class="line"><span class="comment">           默认是equals、clone、hashCode和toString，也就是说我们在调用代理对象的这些方法之前就会把延迟加载对象从数据库加载出来--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;lazyLoadTriggerMethods&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>说明:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;lazyLoadTriggerMethods&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br><span class="line">当指定该配置，且值为&quot;&quot; 空字符串，则表示直接访问具有关联的延迟加载对象的toString()时，也不会加载所关联的延迟加载的数据</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-动态SQL-重点"><a href="#2-动态SQL-重点" class="headerlink" title="2.动态SQL - [重点]"></a>2.动态SQL - [重点]</h1><p>动态SQL简介</p>
+<p>   |-根据条件动态的在运行过程 再确定要执行的 SQL语句.</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">MyBatis 的一个强大的特性之一通常是它的动态 SQL 能力</span><br><span class="line"></span><br><span class="line">如果你有使用 JDBC 或其他 相似框架的经验,你就明白条件地串联 SQL 字符串在一起是多么的痛苦,确保不能忘了空 格或在列表的最后省略逗号。动态 SQL 可以彻底处理这种痛苦</span><br><span class="line">String sql = &quot;select * from 商品表 where 1=1&quot;</span><br><span class="line">if(name!=null &amp;&amp; !&quot;&quot;.equals(name))&#123;</span><br><span class="line">		sql+= &quot; and name like &#x27;%xx%&#x27;&quot;</span><br><span class="line">&#125;</span><br><span class="line">if(类别id!=null &amp;&amp; &quot;&quot;.equals())&#123;</span><br><span class="line">       sql+= &quot; and &quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通常使用动态 SQL 不可能是独立的一部分,MyBatis 当然使用一种强大的动态 SQL 语 言来改进这种情形,这种语言可以被用在任意映射的 SQL  语句中</p>
+<h3 id="1-where标签与if标签配合"><a href="#1-where标签与if标签配合" class="headerlink" title="(1) where标签与if标签配合"></a>(1) where标签与if标签配合</h3><p>问题：根据条件查询员工列表</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据条件查询员工列表</span></span><br><span class="line">  List&lt;Emp&gt; <span class="title function_">getEmpListByCondition</span><span class="params">(Emp emp)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>sql映射文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--按条件查询员工列表--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getEmpListByCondition&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;Emp&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;empResultMap&quot;</span>&gt;</span></span><br><span class="line">        SELECT e.*,d.dname</span><br><span class="line">        FROM emp e INNER JOIN dept d ON(e.dept_id=d.dept_id)</span><br><span class="line">        where 1=1</span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;empId != null and empId != 0&quot;</span>&gt;</span></span><br><span class="line">            and emp_id=#&#123;empId&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;ename != null and ename != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            and ename=#&#123;ename&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;job != null and job != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            and job=#&#123;job&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">getEmpListByCondition</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">Emp</span> <span class="variable">emp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Emp</span>();</span><br><span class="line">    <span class="comment">// emp.setEname(&quot;Jack&quot;);</span></span><br><span class="line">    <span class="comment">// emp.setJob(&quot;经理&quot;);</span></span><br><span class="line"></span><br><span class="line">    List&lt;Emp&gt; empList = empDao.getEmpListByCondition(emp);</span><br><span class="line">    <span class="keyword">for</span> (Emp e : empList) &#123;</span><br><span class="line">        System.out.println(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通常将where标签与if配合使用:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--按条件查询员工列表--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getEmpListByCondition&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;Emp&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;empResultMap&quot;</span>&gt;</span></span><br><span class="line">    SELECT e.*,d.dname</span><br><span class="line">    FROM emp e INNER JOIN dept d ON(e.dept_id=d.dept_id)</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;empId != null and empId != 0&quot;</span>&gt;</span></span><br><span class="line">            and emp_id=#&#123;empId&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;ename != null and ename != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            and ename=#&#123;ename&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;job != null and job != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            and job=#&#123;job&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-实现互斥条件标签choose"><a href="#2-实现互斥条件标签choose" class="headerlink" title="(2) 实现互斥条件标签choose"></a>(2) 实现互斥条件标签choose</h3><p>如果要实现互斥条件判断:</p>
+<p>if-else if -else</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--按条件查询员工列表--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getEmpListByCondition&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;Emp&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;empResultMap&quot;</span>&gt;</span></span><br><span class="line">    SELECT e.*,d.dname</span><br><span class="line">    FROM emp e INNER JOIN dept d ON(e.dept_id=d.dept_id)</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--实现互斥条件--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;empId != null and empId != 0&quot;</span>&gt;</span></span><br><span class="line">                and emp_id=#&#123;empId&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;ename != null and ename != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">                and ename=#&#123;ename&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;job != null and job != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">                and job=#&#123;job&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">otherwise</span>&gt;</span></span><br><span class="line">                and e.dept_id=#&#123;dept.deptId&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-set标签与if标签配合"><a href="#3-set标签与if标签配合" class="headerlink" title="(3) set标签与if标签配合"></a>(3) set标签与if标签配合</h3><p>set标签会动态生成set 子句，在执行update操作时</p>
+<p>需求：根据员工id 动态更新员工表</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//更新员工</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">update</span><span class="params">(Emp emp)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>SQL映射文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;update&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;Emp&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--update emp set ename=#&#123;ename&#125; , hiredate=#&#123;hiredate&#125;,job=#&#123;job&#125;,salary=#&#123;salary&#125;,</span></span><br><span class="line"><span class="comment">                       dept_id=#&#123;dept.deptId&#125;</span></span><br><span class="line"><span class="comment">        where emp_id=#&#123;empId&#125;--&gt;</span></span><br><span class="line">    update emp</span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;ename!=null and ename!=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            ename=#&#123;ename&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;hiredate!=null and hiredate!=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            hiredate=#&#123;hiredate&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;job!=null and job!=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            job=#&#123;job&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;salary!=null and salary!=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            salary=#&#123;salary&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;dept != null and dept.deptId!=null&quot;</span>&gt;</span></span><br><span class="line">            dept_id=#&#123;dept.deptId&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    where emp_id=#&#123;empId&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testUpdate</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">Emp</span> <span class="variable">emp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Emp</span>();</span><br><span class="line">        emp.setEmpId(<span class="number">1</span>);</span><br><span class="line">        emp.setEname(<span class="string">&quot;Jack&quot;</span>);</span><br><span class="line">        emp.setSalary(<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="string">&quot;12000&quot;</span>));</span><br><span class="line">        <span class="type">Dept</span> <span class="variable">dept</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dept</span>();</span><br><span class="line">        dept.setDeptId(<span class="number">2</span>);</span><br><span class="line">        emp.setDept(dept);</span><br><span class="line">        empDao.update(emp);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-模糊匹配查询-bind标签"><a href="#4-模糊匹配查询-bind标签" class="headerlink" title="(4) 模糊匹配查询-bind标签"></a>(4) 模糊匹配查询-bind标签</h3><p>模糊匹配查询员工的姓名</p>
+<p>模糊匹配 实现方式有多种写法：</p>
+<p>方式一: concat()  ,#{ename}</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getEmpListByCondition&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;Emp&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;empResultMap&quot;</span>&gt;</span></span><br><span class="line">    SELECT e.*,d.dname</span><br><span class="line">    FROM emp e INNER JOIN dept d ON(e.dept_id=d.dept_id)</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;empId != null and empId != 0&quot;</span>&gt;</span></span><br><span class="line">            and emp_id=#&#123;empId&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;ename != null and ename != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            and ename like concat(&#x27;%&#x27;,#&#123;ename&#125;,&#x27;%&#x27;)</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;job != null and job != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            and job=#&#123;job&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line">范围查询</span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getCartByUserId&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;cartResultMap&quot;</span>&gt;</span></span><br><span class="line">        select  c.*,g.goodsname,g.price</span><br><span class="line">        from cart c inner join goods g on (c.goodsid=g.id)</span><br><span class="line">        where c.userid=#&#123;userid&#125; and 1=1</span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;cart.goods!=null and cart.goods.goodsname!=null and cart.goods.goodsname!=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            and g.goodsname like concat(&#x27;%&#x27;,#&#123;cart.goods.goodsname&#125;,&#x27;%&#x27;)</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;cart.goods!=null and cart.goods.startPrice!=null and cart.goods.startPrice!=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            and g.price <span class="symbol">&amp;gt;</span>= #&#123;cart.goods.startPrice&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;cart.goods!=null and cart.goods.endPrice!=null and cart.goods.endPrice!=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            and g.price <span class="symbol">&amp;lt;</span>= #&#123;cart.goods.endPrice&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;cart.startNum!=null and cart.startNum !=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            and c.nums <span class="symbol">&amp;gt;</span>= #&#123;cart.startNum&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;cart.endNum!=null and cart.endNum !=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            and c.nums <span class="symbol">&amp;lt;</span>= #&#123;cart.endNum&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>方式二: sql映射文件中使用 ${} 取值表达式</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getEmpListByCondition&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;Emp&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;empResultMap&quot;</span>&gt;</span></span><br><span class="line">    SELECT e.*,d.dname</span><br><span class="line">    FROM emp e INNER JOIN dept d ON(e.dept_id=d.dept_id)</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;empId != null and empId != 0&quot;</span>&gt;</span></span><br><span class="line">            and emp_id=#&#123;empId&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;ename != null and ename != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            and ename like &#x27;%$&#123;ename&#125;%&#x27;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;job != null and job != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            and job=#&#123;job&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>面试问题: mybatis 中${} 与#{}区别？</strong></p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">a. #&#123;name&#125;解析之后的SQL中条件name=&#x27;123&#x27;参数有单引号,但是$&#123;name&#125;最终解析的SQL中的参数name=123,没有单引号</span><br><span class="line">b. 应用场合的区别: 用于为生成SQL中的 ？ 填充值 #&#123;&#125;一般用在用户输入值</span><br><span class="line">                 用于为生成SQL语句中某个部份，提供值，并不添加单引号</span><br><span class="line">   select * from $&#123;tablename&#125; order by $&#123;列&#125;  </span><br><span class="line">c. #&#123;&#125; 可以预防SQL注入攻击</span><br><span class="line">   $&#123;&#125; 存在SQL注入攻击漏洞</span><br><span class="line">   </span><br><span class="line">   select * from userinfo where username=? and password=?</span><br><span class="line">   </span><br><span class="line">   select * from userinfo where username=&#x27;$&#123;username&#125;&#x27; and password=&#x27;$&#123;pwd&#125;&#x27;</span><br><span class="line">   </span><br><span class="line">   select * from userinfo where username=&#x27;xxx&#x27; and password=&#x27;$&#123;pwd&#125;&#x27;</span><br><span class="line">   </span><br><span class="line">   例如采用此密码： sss&#x27; or &#x27;1&#x27;=&#x27;1</span><br><span class="line">               </span><br></pre></td></tr></table></figure>
+
+<p>方式三： 使用bind标签  [了解]</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;ename != null and ename != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--由bind标签指定name提供参数值--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bind</span> <span class="attr">name</span>=<span class="string">&quot;enameKeywords&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#x27;%&#x27;+ename+&#x27;%&#x27;&quot;</span>/&gt;</span></span><br><span class="line">    and ename like #&#123;enameKeywords&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-foreach批量操作"><a href="#5-foreach批量操作" class="headerlink" title="(5) foreach批量操作"></a>(5) foreach批量操作</h3><p>用于批量操作的动态SQL标签</p>
+<p>批量添加与删除</p>
+<p>mysql:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表(列<span class="number">1</span>,列<span class="number">2</span>,....) </span><br><span class="line"><span class="keyword">values</span>(值<span class="number">1</span>，值<span class="number">2</span>,....),(值<span class="number">1</span>，值<span class="number">2</span>,....),(值<span class="number">1</span>，值<span class="number">2</span>,....),(值<span class="number">1</span>，值<span class="number">2</span>,....)</span><br></pre></td></tr></table></figure>
+
+<p>案例：实现添加3个部门</p>
+<p>DeptDao方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//批量添加</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">multiAdd</span><span class="params">(List&lt;Dept&gt; deptList)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//批量删除</span></span><br><span class="line"> <span class="keyword">void</span> <span class="title function_">batchDelByIds</span><span class="params">(Integer[] ids)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>DeptDao.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;multiAdd&quot;</span>&gt;</span></span><br><span class="line">        insert into dept(dname)</span><br><span class="line">        values</span><br><span class="line">        <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">            collection表示参数的集合的名称</span></span><br><span class="line"><span class="comment">            item 表示从集合collection中迭代单个对象</span></span><br><span class="line"><span class="comment">            separater指定每一次迭代元素之间分隔符</span></span><br><span class="line"><span class="comment">         --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">item</span>=<span class="string">&quot;xx&quot;</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span>&gt;</span></span><br><span class="line">            (#&#123;xx.dname&#125;)</span><br><span class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--批量删除--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;batchDelByIds&quot;</span>&gt;</span></span><br><span class="line">    delete from dept where dept_id in</span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;array&quot;</span> <span class="attr">item</span>=<span class="string">&quot;deptId&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span>&gt;</span></span><br><span class="line">        #&#123;deptId&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">19:41:36.841 [main] DEBUG com.woniu.dao.DeptDao.batchDelByIds - ==&gt;  Preparing: delete from dept where dept_id in ( ? , ? , ? ) </span><br><span class="line">19:41:36.986 [main] DEBUG com.woniu.dao.DeptDao.batchDelByIds - ==&gt; Parameters: 11(Integer), 12(Integer), 13(Integer)</span><br><span class="line">19:41:36.994 [main] DEBUG com.woniu.dao.DeptDao.batchDelByIds - &lt;==    Updates: 3</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-MyBatis模拟测试讲解"><a href="#3-MyBatis模拟测试讲解" class="headerlink" title="3.MyBatis模拟测试讲解"></a>3.MyBatis模拟测试讲解</h1><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line">商品表 - Product</span><br><span class="line">    id, 名称,   价格</span><br><span class="line">    1   充电器  20</span><br><span class="line">    2   ...          50</span><br><span class="line">    3  ....          80</span><br><span class="line">    </span><br><span class="line">购物车表 - Cart</span><br><span class="line">   id, 购买人(用户) userid, 商品id(productid),数量num,小计subtotal</span><br><span class="line"></span><br><span class="line">用户表 - Users</span><br><span class="line">  id主键 ,name,age,money</span><br><span class="line">    1         xxx   20   1000</span><br><span class="line">    2        yyy    21   3000</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"> 问题1:批量添加购物车记录</span><br><span class="line"> CartDao:</span><br><span class="line"> </span><br><span class="line">    void multiAdd(List&lt;Cart&gt; cartList)  ;</span><br><span class="line">    </span><br><span class="line"> CartDao.xml:</span><br><span class="line">   &lt;insert id=&quot;multiAdd&quot;&gt;</span><br><span class="line">        insert into cart(userid,productid,num,subtotal)</span><br><span class="line">        values</span><br><span class="line">        &lt;foreach item=&quot;cart&quot; collection=&quot;list&quot; seperator=&quot;,&quot;&gt;</span><br><span class="line">               (#&#123;cart.userid&#125;,#&#123;cart.productid&#125;,#&#123;cart.num&#125;,#&#123;cart.subtotal&#125;)</span><br><span class="line">        &lt;/foreach&gt;</span><br><span class="line">   &lt;/insert&gt;</span><br><span class="line"> </span><br><span class="line">CartDaoTest:</span><br><span class="line">         </span><br><span class="line">    @Test</span><br><span class="line">    public void testMultiAdd()&#123;</span><br><span class="line">           List&lt;Cart&gt; cartList = new ArrayList&lt;&gt;();</span><br><span class="line">           Cart c1 = new Cart();</span><br><span class="line">           c1.setUserId(2);</span><br><span class="line">           c1.setProductId(1);</span><br><span class="line">           c1.setProductId(2);</span><br><span class="line">           c1.setSubtotal();</span><br><span class="line">           </span><br><span class="line">           c2.setUserId(2);</span><br><span class="line">           c2.setProductId(1);</span><br><span class="line">           c2.setProductId(2);</span><br><span class="line">           c2.setSubtotal();</span><br><span class="line">           </span><br><span class="line">           c3setUserId(2);</span><br><span class="line">           c3.setProductId(1);</span><br><span class="line">           c3.setProductId(2);</span><br><span class="line">           c3.setSubtotal();</span><br><span class="line">           </span><br><span class="line">           cartList.add(c1);</span><br><span class="line">           cartList.add(c2);</span><br><span class="line">           cartList.add(c3);</span><br><span class="line">           </span><br><span class="line">           cartDao.multiAdd(cartList);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">   问题3:  使用一对多查询每个用户的购买信息,要延迟加载</span><br><span class="line">   Users:</span><br><span class="line">   </span><br><span class="line">     List&lt;Cart&gt; cartList;  //一对多</span><br><span class="line">   </span><br><span class="line">    </span><br><span class="line">  UserDao:</span><br><span class="line">     List&lt;User&gt; getUserList();</span><br><span class="line">     </span><br><span class="line">  UserDao.xml:</span><br><span class="line">     &lt;resultMap id=&quot;userResultMap&quot; type=&quot;Users&quot;&gt;</span><br><span class="line">            &lt;id column=&quot;id&quot; property=&quot;id&quot; /&gt;</span><br><span class="line">             &lt;result column=&quot;name&quot; property=&quot;name&quot; /&gt;</span><br><span class="line">             &lt;result column=&quot;age&quot; property=&quot;age&quot; /&gt;</span><br><span class="line">             &lt;collection property=&quot;cartList&quot; column=&quot;id&quot;</span><br><span class="line">                  fetchType=&quot;lazy&quot;</span><br><span class="line">                   select=&quot;com.woniu.dao.CartDao.getCartListByUserId&quot;&gt;</span><br><span class="line">     &lt;/resultMap&gt;</span><br><span class="line">    </span><br><span class="line">     &lt;select id=&quot;getUserList&quot; resultMap=&quot;userResultMap&quot;&gt;</span><br><span class="line">            select * from users</span><br><span class="line">     &lt;/select&gt;</span><br><span class="line">      </span><br><span class="line">     </span><br><span class="line">    Cart:</span><br><span class="line">       Product product;   //一对一关联</span><br><span class="line">    </span><br><span class="line">    CartDao:</span><br><span class="line">       List&lt;Cart&gt; getCartListByUserId(Integer userid);</span><br><span class="line">       </span><br><span class="line">    CartDao.xml:</span><br><span class="line">      &lt;resultMap id=&quot;&quot; type=&quot;Cart&quot;&gt;</span><br><span class="line">            &lt;id column=&quot;id&quot; property=&quot;id&quot; /&gt;</span><br><span class="line">            &lt;result column=&quot;num&quot; property=&quot;num&quot; /&gt;</span><br><span class="line">            &lt;result column=&quot;subtotal&quot; property=&quot;subtotal&quot; /&gt;</span><br><span class="line">            &lt;association property=&quot;product&quot; column=&quot;productid&quot;  fetchType=&quot;lazy&quot;</span><br><span class="line">                   select=&quot;com.woniu.dao.ProductDao.getProductById&quot; /&gt;</span><br><span class="line">      &lt;/resultMap&gt;</span><br><span class="line">    </span><br><span class="line">      &lt;select id=&quot;getCartListByUserId&quot;  resultMap=&quot;cartResultMap&quot;&gt;</span><br><span class="line">          &lt;!--   select * from cart</span><br><span class="line">             where userid=#&#123;userid&#125; --&gt;</span><br><span class="line">             </span><br><span class="line">             select c.*,p.name,p.price</span><br><span class="line">             from cart c inner join product p on(c.productid=p.id)</span><br><span class="line">             where userid=#&#123;userid&#125;          </span><br><span class="line">      &lt;/select&gt;</span><br><span class="line">       </span><br><span class="line">      问题4: </span><br><span class="line">      </span><br><span class="line">         User:</span><br><span class="line">            |-List&lt;Cart&gt;</span><br><span class="line">            </span><br><span class="line">         Cart:</span><br><span class="line">            |-User</span><br><span class="line">            |-Product</span><br><span class="line">            </span><br><span class="line">         Product</span><br><span class="line">            |-List&lt;Cart&gt;   </span><br><span class="line">               </span><br><span class="line">           先查Product与Cart中购买&quot;充电器&quot; 购物车的记录列表</span><br><span class="line">           select c.* </span><br><span class="line">           from cart c,product p </span><br><span class="line">           where c.productid=p.id and p.name like &#x27;%充电器%&#x27;</span><br><span class="line">           </span><br><span class="line">           </span><br><span class="line">           </span><br><span class="line">           再关联User --&gt;查出对应的用户姓名,年龄,金额</span><br><span class="line">              </span><br><span class="line">      </span><br><span class="line">      </span><br><span class="line">      </span><br><span class="line">      问题5:</span><br><span class="line">        </span><br><span class="line">        select name,sum(subtotal) </span><br><span class="line">        from user inner join cart on user.id=cart.userid</span><br><span class="line">        group by name</span><br><span class="line">      </span><br><span class="line">     问题6: </span><br><span class="line">     </span><br><span class="line">       select * from cart limit 3,3 </span><br><span class="line">        第一个3起始行号 </span><br><span class="line">        第二个3每页记录数</span><br><span class="line">        </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">gray</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://gray9420.github.io/2022/06/01/7-7mybits%E9%AB%98%E7%BA%A7/">https://gray9420.github.io/2022/06/01/7-7mybits%E9%AB%98%E7%BA%A7/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">gray</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/java%E9%AB%98%E7%BA%A7/">
+                                    <span class="chip bg-color">java高级</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2022/06/01/7-8mybits%E7%BC%93%E5%AD%98-%E9%A1%B9%E7%9B%AE%E5%88%86%E5%B1%82/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="7-8mybits缓存+项目分层">
+                        
+                        <span class="card-title">7-8mybits缓存+项目分层</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-01
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/page2/" class="post-category">
+                                    page2
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java%E9%AB%98%E7%BA%A7/">
+                        <span class="chip bg-color">java高级</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/06/01/7-6mybits%E8%BF%9B%E9%98%B62/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="7-6mybits进阶2">
+                        
+                        <span class="card-title">7-6mybits进阶2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/page2/" class="post-category">
+                                    page2
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java%E9%AB%98%E7%BA%A7/">
+                        <span class="chip bg-color">java高级</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">gray9420</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/gray9420" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1666608176@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1666608176" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1666608176" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

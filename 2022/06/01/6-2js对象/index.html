@@ -1,0 +1,1483 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="6-2js对象, gray">
+    <meta name="description" content="教学目标
+回顾
+
+JS对象
+
+对象的分类
+
+核心对象(内置对象)
+
+用户自定义对象 [重点]
+
+
+BOM 浏览器对象
+
+DOM 文档对象
+
+
+
+
+1.回顾-JS基础
+JS数据类型:
+
+字符串
+数值
+布尔
+对象 
+Null - typeof(">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>6-2js对象 | blogToGray</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">blogToGray</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">blogToGray</div>
+        <div class="logo-desc">
+            
+            飞者非鸟,潜者非鱼
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">6-2js对象</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/java%E5%9F%BA%E7%A1%80/">
+                                <span class="chip bg-color">java基础</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/page2/" class="post-category">
+                                page2
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-06-01
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="教学目标"><a href="#教学目标" class="headerlink" title="教学目标"></a>教学目标</h2><ul>
+<li><p>回顾</p>
+</li>
+<li><p>JS对象</p>
+<ul>
+<li><p>对象的分类</p>
+</li>
+<li><p>核心对象(内置对象)</p>
+</li>
+<li><p>用户自定义对象 [重点]</p>
+<hr>
+</li>
+<li><p>BOM 浏览器对象</p>
+</li>
+<li><p>DOM 文档对象</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="1-回顾-JS基础"><a href="#1-回顾-JS基础" class="headerlink" title="1.回顾-JS基础"></a>1.回顾-JS基础</h1><ul>
+<li><p>JS数据类型:</p>
+<ul>
+<li>字符串</li>
+<li>数值</li>
+<li>布尔</li>
+<li>对象 </li>
+<li>Null - typeof(null) -object</li>
+<li>Undefined  - 声明变量,没有初始化时会产生</li>
+</ul>
+</li>
+<li><p>变量和常量</p>
+<ul>
+<li><p>var 或 let   </p>
+<ul>
+<li><p>let 不能重复声明, var可以重复声明</p>
+</li>
+<li><p>let 没有声明提升,  var有声明提升</p>
+</li>
+<li><p>let更安全 – let 最小起作用范围为一个区域块</p>
+<pre><code>var最小起作用范围为一个函数内
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>const - 不能修改  constant 常量</p>
+</li>
+</ul>
+</li>
+<li><p>运算符</p>
+<ul>
+<li>typeof</li>
+<li>&#x3D;&#x3D;&#x3D;  严格等于  与 &#x3D;&#x3D;   [123&#x3D;&#x3D;”123”    123&#x3D;&#x3D;&#x3D;”123” –&gt;false]</li>
+</ul>
+</li>
+<li><p>控制结构</p>
+<ul>
+<li>条件判断  if(null ,0,””,undefined) –&gt;false</li>
+</ul>
+</li>
+<li><p>类型转换</p>
+<ul>
+<li><p>parseInt(),parseFloat()</p>
+</li>
+<li><p>isNaN() – 判断参数是否是非数字 –&gt;isNaN(“123”) –&gt; false   –&gt;parseInt()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">is</span>(<span class="params">!<span class="built_in">isNaN</span>(a)</span>)&#123;</span><br><span class="line">    <span class="built_in">parseInt</span>(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(正则表达式)&#123;</span><br><span class="line">    <span class="title class_">Integer</span>.<span class="built_in">parseInt</span>(<span class="string">&quot;123&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>JS函数</p>
+</li>
+</ul>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">函数的定义</span><br><span class="line">  |-无参</span><br><span class="line">  |-带参数    function f(a,b)&#123;</span><br><span class="line">                 return value;</span><br><span class="line">             &#125;</span><br><span class="line"> 函数表达式:</span><br><span class="line">    let f = function()&#123;alert(&#x27;xxx&#x27;)&#125;;</span><br><span class="line">             </span><br><span class="line">函数的调用:</span><br><span class="line">   f();  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>函数嵌套定义<ul>
+<li>内部可以访问外部函数</li>
+<li>外部函数不能访问内部函数的局部变量</li>
+</ul>
+</li>
+</ul>
+<h1 id="2-JS对象-核心内置对象"><a href="#2-JS对象-核心内置对象" class="headerlink" title="2. JS对象 - 核心内置对象"></a>2. JS对象 - 核心内置对象</h1><h2 id="2-1-JS对象分类"><a href="#2-1-JS对象分类" class="headerlink" title="2-1 JS对象分类"></a>2-1 JS对象分类</h2><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">JS核心内置对象 </span><br><span class="line">   |-Array,String,Date,Nubmer,RegExp,event事件对象</span><br><span class="line">JS自定义对象  [重点]</span><br><span class="line">JS浏览器对象 - BOM --&gt; Browser Object Model </span><br><span class="line">JS文档对象  - DOM--&gt; Document Object Model - [重点]</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-JS核心对象–Array"><a href="#2-2-JS核心对象–Array" class="headerlink" title="2-2 JS核心对象–Array"></a>2-2 JS核心对象–Array</h2><p>Array对象 – 用于在单个的变量中存储多个值</p>
+<p>arr[0]</p>
+<p>|- 大小是动态</p>
+<p>|- 数据可以不同类型</p>
+<p>|- 可以使用字符串来作为下标</p>
+<p> |- 为数组赋值时,可以不连续</p>
+<ul>
+<li>创建 Array 对象的语法：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new Array();</span><br><span class="line">new Array(size);</span><br><span class="line">new Array(element0, element1, ..., elementn);</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例1: 数组的定义与遍历</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">     <span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">3</span>); <span class="comment">//初始大小</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">     arr[<span class="number">0</span>]=<span class="number">123</span>;</span></span><br><span class="line"><span class="language-javascript">     arr[<span class="number">1</span>]=<span class="string">&quot;hello&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">     arr[<span class="number">2</span>]=<span class="string">&quot;world&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">     arr[<span class="number">3</span>]=<span class="literal">null</span>;</span></span><br><span class="line"><span class="language-javascript">     arr[<span class="number">5</span>]=<span class="string">&quot;aaa&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">     arr[<span class="string">&quot;wh&quot;</span>]=<span class="string">&quot;wuhan&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">     arr[<span class="string">&quot;woniu&quot;</span>]=<span class="string">&quot;蜗牛&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">     <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;长度:&quot;</span>+arr.<span class="property">length</span>);  <span class="comment">//6</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">     <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;数组元素: &quot;</span>+arr); <span class="comment">//toString()</span></span></span><br><span class="line"><span class="language-javascript">     <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;普通for ------------------------------------------&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">     <span class="comment">//遍历数组-1  for</span></span></span><br><span class="line"><span class="language-javascript">     <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.<span class="property">length</span>;i++)&#123;</span></span><br><span class="line"><span class="language-javascript">         <span class="variable language_">console</span>.<span class="title function_">log</span>(arr[i]);</span></span><br><span class="line"><span class="language-javascript">     &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">     <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;for..in ----------------------------------------------&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">     <span class="comment">//遍历数组-2   for..in  迭代的是元素的下标,跳过未初始化的undefined元素</span></span></span><br><span class="line"><span class="language-javascript">     <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> arr)&#123;</span></span><br><span class="line"><span class="language-javascript">         <span class="variable language_">console</span>.<span class="title function_">log</span>(i +<span class="string">&quot;----&gt;&quot;</span>+arr[i]);  </span></span><br><span class="line"><span class="language-javascript">     &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">     <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;for..of ---------------------------------------------&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">     <span class="comment">//遍历数组-3  for...of  --相当于java中的增强for ,未初始化的undefined也会迭代</span></span></span><br><span class="line"><span class="language-javascript">     <span class="keyword">for</span>(<span class="keyword">let</span> x <span class="keyword">of</span> arr)&#123;</span></span><br><span class="line"><span class="language-javascript">         <span class="variable language_">console</span>.<span class="title function_">log</span>(x);</span></span><br><span class="line"><span class="language-javascript">     &#125;</span></span><br><span class="line"><span class="language-javascript">     <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;forEach() 函数-----------------------------------------&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">     <span class="comment">//ES6推出的高阶函数  [函数的参数又是另一个函数]  与for...in效果相同</span></span></span><br><span class="line"><span class="language-javascript">     <span class="comment">// arr.forEach(function(item,index)&#123;</span></span></span><br><span class="line"><span class="language-javascript">     <span class="comment">//     console.log(item+&quot;-----&gt;&quot;+index);</span></span></span><br><span class="line"><span class="language-javascript">     <span class="comment">// &#125;); </span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">     <span class="comment">//箭头函数 类似java中的lambda 表达式  ,当使用一个参数时,可以省略()</span></span></span><br><span class="line"><span class="language-javascript">     arr.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span>=&gt;</span>&#123;</span></span><br><span class="line"><span class="language-javascript">         <span class="variable language_">console</span>.<span class="title function_">log</span>(item);</span></span><br><span class="line"><span class="language-javascript">     &#125;); </span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p><strong>补充: 数组的定义</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">let</span> arr = [<span class="string">&#x27;aaa&#x27;</span>,<span class="string">&#x27;bbb&#x27;</span>];  <span class="comment">//arr = new Array();</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//    arr[0]=111;</span></span><br><span class="line">    <span class="comment">//    arr[1]=222;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">//forEach遍历</span></span><br><span class="line"> arr.<span class="title function_">forEach</span>(<span class="function"><span class="params">e</span>=&gt;</span><span class="variable language_">console</span>.<span class="title function_">log</span>(e));</span><br><span class="line"></span><br><span class="line">----------------------------------------------------------------</span><br><span class="line">多维数组:      </span><br><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line">arr[<span class="number">0</span>] = [<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>,<span class="number">44</span>];</span><br><span class="line">arr[<span class="number">1</span>] = [<span class="number">55</span>,<span class="number">66</span>,<span class="number">77</span>];</span><br><span class="line">arr[<span class="number">2</span>] = [<span class="number">88</span>,<span class="number">99</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> arr)&#123;</span><br><span class="line">    <span class="comment">//console.log(i); //下标 0,1,2</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j <span class="keyword">in</span> arr[i])&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(arr[i][j]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例2:数组的常用方法</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性&#x2F;方法名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>length</td>
+<td>设置或返回数组元素的个数。</td>
+</tr>
+<tr>
+<td>prototype</td>
+<td>为数组对象添加属性或方法</td>
+</tr>
+<tr>
+<td>forEach()</td>
+<td>数组每个元素都执行一次回调函数</td>
+</tr>
+<tr>
+<td>includes()</td>
+<td>判断一个数组是否包含一个指定的值</td>
+</tr>
+<tr>
+<td>indexOf()</td>
+<td>搜索数组中的元素，并返回它所在的位置</td>
+</tr>
+<tr>
+<td>pop()</td>
+<td>删除数组的最后一个元素并返回删除的元素</td>
+</tr>
+<tr>
+<td>push()</td>
+<td>向数组的末尾添加一个或更多元素，并返回新的长度</td>
+</tr>
+<tr>
+<td>shift()</td>
+<td>删除数组中首个元素,返回</td>
+</tr>
+<tr>
+<td>unshift()</td>
+<td>向数组的开头添加一个或更多元素，并返回新的长度</td>
+</tr>
+<tr>
+<td>sort()</td>
+<td>数组的排序</td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>检测数值元素，并返回符合条件所有元素的数组</td>
+</tr>
+</tbody></table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">      <span class="keyword">let</span> arr=[<span class="number">23</span>,<span class="number">45</span>,<span class="number">16</span>,<span class="number">7</span>,<span class="number">34</span>];</span><br><span class="line"></span><br><span class="line">      <span class="comment">//为所有数组对象添加方法</span></span><br><span class="line">      <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">findMax</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">          <span class="keyword">let</span> m = <span class="variable language_">this</span>[<span class="number">0</span>];</span><br><span class="line">          <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;<span class="variable language_">this</span>.<span class="property">length</span>;i++)&#123;</span><br><span class="line">              <span class="keyword">if</span>(m &lt; <span class="variable language_">this</span>[i])&#123;</span><br><span class="line">                  m = <span class="variable language_">this</span>[i];</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">return</span> m;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">let</span> maxValue = arr.<span class="title function_">findMax</span>();</span><br><span class="line">     <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;最大值:&quot;</span>+maxValue);</span><br><span class="line"></span><br><span class="line"> <span class="comment">//  let maxValue = arr.findMax();</span></span><br><span class="line">    <span class="comment">//  console.log(&quot;最大值:&quot;+maxValue);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//  console.log(arr.includes(45));</span></span><br><span class="line">    <span class="comment">//  console.log(arr.join());</span></span><br><span class="line">    <span class="comment">// //  arr.pop();</span></span><br><span class="line">    <span class="comment">// //  arr.push(999);</span></span><br><span class="line">    <span class="comment">//  arr.unshift(123);</span></span><br><span class="line">    <span class="comment">//  console.log(arr);</span></span><br><span class="line">     </span><br><span class="line">      arr.<span class="title function_">sort</span>(<span class="keyword">function</span>(<span class="params">n1,n2</span>)&#123;</span><br><span class="line">        <span class="comment">//  if(n1&gt;n2)</span></span><br><span class="line">        <span class="comment">//     return 1;</span></span><br><span class="line">        <span class="comment">//  else if(n1&lt;n2)</span></span><br><span class="line">        <span class="comment">//     return -1;</span></span><br><span class="line">        <span class="comment">//  else 0;</span></span><br><span class="line">        <span class="keyword">return</span> -(n1-n2); <span class="comment">//降序</span></span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="title function_">join</span>());</span><br><span class="line"> &lt;/script&gt; </span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-JS核心对象-String"><a href="#2-3-JS核心对象-String" class="headerlink" title="2-3 JS核心对象-String"></a>2-3 JS核心对象-String</h2><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">创建String对象:</span><br><span class="line">   new String(s); --&gt; 构造函数</span><br><span class="line">   String(s);  --&gt; 相当于Java中的 String.valueOf()</span><br><span class="line">   </span><br><span class="line">属性与方法:</span><br><span class="line"></span><br><span class="line">length   字符个数/长度</span><br><span class="line">charAt()  返回在指定位置的字符。</span><br><span class="line">concat() 连接字符串   + </span><br><span class="line">indexOf() 检索字符串 </span><br><span class="line">lastIndexOf() 检索字符串 </span><br><span class="line">-------------------------------------------------</span><br><span class="line">substr() 从起始索引号提取字符串中指定数目的字符。 </span><br><span class="line">substring() 提取字符串中两个指定的索引号之间的字符。 --同Java中的substring()</span><br><span class="line">-------------------------------------------------</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> num = <span class="number">123</span>;</span><br><span class="line"><span class="keyword">let</span> str2 = <span class="title class_">String</span>(num); <span class="comment">//String()作为一个转换函数</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str2);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str3 = <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;456&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str3);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substring</span>(<span class="number">2</span>,<span class="number">20</span>)); <span class="comment">//第1个参数从0开始计 ,5-2 -&gt; 3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substr</span>(<span class="number">2</span>,<span class="number">5</span>)); <span class="comment">//第1个参数从0开始计 第2个参数为截取字符的个数</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-JS核心对象-Math"><a href="#2-4-JS核心对象-Math" class="headerlink" title="2-4 JS核心对象-Math"></a>2-4 JS核心对象-Math</h2><ul>
+<li><p>JS中的Math对象等同于java.lang.Math类</p>
+</li>
+<li><p>提供其本的常数[圆周率,自然对数底数..]数学相关方法函数</p>
+</li>
+<li><p>使用方法：</p>
+<p>​    Math.[{property | method}]</p>
+<p>注意：Math 对象不需要用 new 运算符创建，如果试图这样做则出错</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">pow</span>(x,y)返回 x 的 y 次幂。	</span><br><span class="line"><span class="title function_">random</span>()返回 <span class="number">0</span> ~ <span class="number">1</span> 之间的随机数。	</span><br><span class="line"><span class="title function_">round</span>(x)把数四舍五入为最接近的整数。	<span class="built_in">parseInt</span>() 截位取整	</span><br><span class="line"> <span class="title function_">ceil</span>() 向上取整,<span class="title function_">floor</span>() 向下取整</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>()); <span class="comment">//0~1 随机小数</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">parseInt</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>()*<span class="number">10</span>));  <span class="comment">//截位取整 </span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Math</span>.<span class="title function_">round</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>()*<span class="number">10</span>)); <span class="comment">//四舍五入取整 </span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Math</span>.<span class="title function_">ceil</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>()*<span class="number">10</span>)); <span class="comment">//不小于的最小 -向上</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-JS核心对象-Date"><a href="#2-5-JS核心对象-Date" class="headerlink" title="2-5 JS核心对象-Date"></a>2-5 JS核心对象-Date</h2><p>同java.util.Date对象</p>
+<p>用于处理日期和时间</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">创建 <span class="title class_">Date</span> 对象的语法：</span><br><span class="line"><span class="keyword">var</span> myDate=<span class="keyword">new</span> <span class="title class_">Date</span>(); <span class="comment">//当前系统时间</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="title class_">Date</span>(milliseconds); <span class="comment">//1970.1.1 00:00:00</span></span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="title class_">Date</span>(dateString);</span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="title class_">Date</span>(year, month, day, hours, minutes, seconds, milliseconds);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//let myDate = new Date(1234567890123);</span></span><br><span class="line"><span class="keyword">let</span> myDate=<span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="comment">//console.log(myDate);</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">write</span>(myDate);</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例: 使用计时器动态显示时间</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 每秒刷新页面 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;meta http-equiv=&quot;refresh&quot; content=&quot;1&quot; /&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">input</span><span class="selector-attr">[name=txt]</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">font-size</span>:<span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>:brown;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> myTimer = <span class="literal">null</span>; <span class="comment">//计时器对象</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> i=<span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">function</span> <span class="title function_">showTime</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> now = <span class="keyword">new</span> <span class="title class_">Date</span>();</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> year = now.<span class="title function_">getFullYear</span>();</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> month = now.<span class="title function_">getMonth</span>()+<span class="number">1</span>; <span class="comment">//0~11</span></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> day = now.<span class="title function_">getDate</span>(); <span class="comment">//一个月中的几号</span></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> hh = now.<span class="title function_">getHours</span>(); <span class="comment">//24小时制</span></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> mi = now.<span class="title function_">getMinutes</span>();</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> ss = now.<span class="title function_">getSeconds</span>();</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> wd = now.<span class="title function_">getDay</span>(); <span class="comment">//一周中第几天</span></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> weekDays = [<span class="string">&#x27;日&#x27;</span>,<span class="string">&#x27;一&#x27;</span>,<span class="string">&#x27;二&#x27;</span>,<span class="string">&#x27;三&#x27;</span>,<span class="string">&#x27;四&#x27;</span>,<span class="string">&#x27;五&#x27;</span>,<span class="string">&#x27;六&#x27;</span>];</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> strDate = <span class="string">&quot;今天是&quot;</span>+year+<span class="string">&quot;年&quot;</span>+</span></span><br><span class="line"><span class="language-javascript">                (month&lt;<span class="number">10</span> ? <span class="string">&quot;0&quot;</span>+<span class="attr">month</span>: month)+<span class="string">&quot;月&quot;</span>+</span></span><br><span class="line"><span class="language-javascript">                (day&lt;<span class="number">10</span> ? <span class="string">&quot;0&quot;</span>+day : day)+<span class="string">&quot;日 时间是 &quot;</span></span></span><br><span class="line"><span class="language-javascript">                +hh+<span class="string">&quot;:&quot;</span>+</span></span><br><span class="line"><span class="language-javascript">                (mi&lt;<span class="number">10</span> ? <span class="string">&quot;0&quot;</span>+<span class="attr">mi</span>: mi)+<span class="string">&quot;:&quot;</span>+</span></span><br><span class="line"><span class="language-javascript">                (ss&lt;<span class="number">10</span> ? <span class="string">&quot;0&quot;</span>+<span class="attr">ss</span>: ss)+<span class="string">&quot; 星期&quot;</span>+weekDays[wd];</span></span><br><span class="line"><span class="language-javascript">            </span></span><br><span class="line"><span class="language-javascript">            <span class="comment">//输出到页面</span></span></span><br><span class="line"><span class="language-javascript">            <span class="comment">//document.write(strDate);</span></span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">document</span>.<span class="property">myform</span>.<span class="property">txt</span>.<span class="property">value</span>=strDate;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">            <span class="comment">//向DIV标签内设置文本</span></span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;myDiv&quot;</span>).<span class="property">innerText</span>=strDate;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">//以递归的方式设置定时器</span></span></span><br><span class="line"><span class="language-javascript">            myTimer = <span class="built_in">setTimeout</span>(<span class="string">&quot;showTime()&quot;</span>,<span class="number">1000</span>);  <span class="comment">//1000ms = 1s </span></span></span><br><span class="line"><span class="language-javascript">            i++;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">if</span>(i==<span class="number">5</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="comment">//停止计时</span></span></span><br><span class="line"><span class="language-javascript">                <span class="built_in">clearTimeout</span>(myTimer);</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- onload事件,表示当页面加载完成后,触发的事件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">&quot;showTime()&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;myform&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;txt&quot;</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;myDiv&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>关于计时器函数 :</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> 计时器对象 = <span class="built_in">setTimeout</span>(<span class="string">&quot;函数名()&quot;</span>,时间ms);  必须以递归形式调用</span><br><span class="line"><span class="built_in">clearTimeout</span>(计时器对象); <span class="comment">//清除计时器对象</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>() 按照指定的周期（以毫秒计）来调用函数或计算表达式</span><br><span class="line"></span><br><span class="line"> <span class="comment">//设置时间周期调用的函数 showTime 可以不使用递归的方式调用</span></span><br><span class="line">myTimer = <span class="built_in">setInterval</span>(showTime, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">另一种形式的写法:</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;,<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-JS对象-用户自定义对象"><a href="#3-JS对象-用户自定义对象" class="headerlink" title="3.JS对象 - 用户自定义对象"></a>3.JS对象 - 用户自定义对象</h1><p>用户自定义的对象分为三种形式来创建:</p>
+<ul>
+<li>字面量对象</li>
+<li>JSON对象</li>
+<li>构造函数对象 - [很少]</li>
+</ul>
+<h2 id="3-1-字面量对象"><a href="#3-1-字面量对象" class="headerlink" title="3-1 字面量对象"></a>3-1 字面量对象</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[] --数组</span><br><span class="line"></span><br><span class="line"><span class="comment">//&#123;&#125; --&gt;对象</span></span><br><span class="line">&#123;</span><br><span class="line">	    <span class="attr">prop1</span>:value1,</span><br><span class="line">		<span class="attr">prop2</span>:value2,</span><br><span class="line">		<span class="attr">propn</span>:valuen,</span><br><span class="line">        [<span class="attr">method1</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;]  方法为可选的</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>示例:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">stu_eat</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&quot;在吃饭!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> stu = &#123;</span><br><span class="line">    <span class="attr">sno</span>:<span class="number">1</span>,</span><br><span class="line">    <span class="attr">sname</span>:<span class="string">&quot;张三&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">20</span>,</span><br><span class="line">    <span class="attr">eat</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">alert</span>(<span class="string">&quot;eat.....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//eat:stu_eat  //将命名的函数赋组eat</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(stu.<span class="property">sno</span>,stu.<span class="property">sname</span>,stu.<span class="property">age</span>);</span><br><span class="line">stu.<span class="title function_">eat</span>(); <span class="comment">//调用对象方法</span></span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-JSON对象-重要"><a href="#3-2-JSON对象-重要" class="headerlink" title="3-2 JSON对象 [重要]"></a>3-2 JSON对象 [重要]</h2><ul>
+<li>什么是JSON –JavaScript Object Natition  JS对象表示法</li>
+<li>关于JSON</li>
+</ul>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1) 一种简单的数据格式,用于在网络应用中作为传输数据的存储格式</span><br><span class="line">(2) 解析方便,文件结构清晰,简单,轻量</span><br><span class="line">(3) JSON是JavaScript原生格式，这意味着在JavaScript中处理JSON数据不需要任何特殊的API或工具包。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>JSON数据格式非常类似于JS字面量对象</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> json必须是符合以下 </span><br><span class="line">•	<span class="number">1.</span>键一定要用双引号，值如果是字符串也要用双引号包括</span><br><span class="line">•	<span class="number">2.</span>数据只包括，数字，布尔，数组，<span class="literal">null</span>，对象，字符串</span><br><span class="line"></span><br><span class="line">而<span class="title class_">JavaScript</span>对象字面量属性不用引号也可以，而且值可以是任何类型，函数，<span class="literal">undefined</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>JSON对象的解析与反解析</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">        <span class="keyword">let</span> stu =  &#123;</span><br><span class="line">            <span class="string">&quot;sid&quot;</span>:<span class="number">1</span>,</span><br><span class="line">            <span class="string">&quot;sname&quot;</span>:<span class="string">&quot;小明&quot;</span>,</span><br><span class="line">            <span class="string">&quot;age&quot;</span>:<span class="number">20</span>            </span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(stu);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将json对象转换为json格式的字符串 --&gt; 反解析 JSON.stringify(json对象) </span></span><br><span class="line">        <span class="keyword">let</span> jsonStr = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(stu);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(jsonStr);</span><br><span class="line"></span><br><span class="line">         <span class="comment">//将json格式的字符串 转换为json对象 --&gt;解析 JSON.parse()</span></span><br><span class="line">        <span class="keyword">let</span> jsonObj = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(jsonStr);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(jsonObj);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>JSON对象支持两种数据结构</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">单个json对象</span><br><span class="line">json数组对象</span><br><span class="line"></span><br><span class="line"> <span class="comment">//JSON Array对象</span></span><br><span class="line"><span class="keyword">let</span> stuArr = [</span><br><span class="line">    &#123;<span class="string">&quot;sid&quot;</span>:<span class="number">1</span>,<span class="string">&quot;sname&quot;</span>:<span class="string">&quot;小明&quot;</span>,<span class="string">&quot;age&quot;</span>:<span class="number">20</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&quot;sid&quot;</span>:<span class="number">2</span>,<span class="string">&quot;sname&quot;</span>:<span class="string">&quot;小丽&quot;</span>,<span class="string">&quot;age&quot;</span>:<span class="number">21</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&quot;sid&quot;</span>:<span class="number">3</span>,<span class="string">&quot;sname&quot;</span>:<span class="string">&quot;小花&quot;</span>,<span class="string">&quot;age&quot;</span>:<span class="number">19</span>&#125;</span><br><span class="line">];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> stu <span class="keyword">of</span> stuArr)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(stu.<span class="property">sid</span>,stu.<span class="property">sname</span>,stu.<span class="property">age</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;forEach--------------------------------&quot;</span>);</span><br><span class="line">stuArr.<span class="title function_">forEach</span>(<span class="function"><span class="params">stu</span>=&gt;</span><span class="variable language_">console</span>.<span class="title function_">log</span>(stu.<span class="property">sid</span>,stu.<span class="property">sname</span>,stu.<span class="property">age</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-构造函数对象-了解"><a href="#3-3-构造函数对象-了解" class="headerlink" title="3-3 构造函数对象 - (了解)"></a>3-3 构造函数对象 - (了解)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.定义构造函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Student</span>(<span class="params">id,name,age</span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">id</span>=id;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">age</span>=age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//2.使用构造函数创建对象</span></span><br><span class="line"><span class="keyword">let</span> obj = <span class="keyword">new</span> 构造函数(属性值);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">let</span> objStu1 = <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="number">1</span>,<span class="string">&quot;张三1&quot;</span>,<span class="number">20</span>);</span><br><span class="line"> <span class="variable language_">console</span>.<span class="title function_">log</span>(objStu1.<span class="property">id</span>,objStu1.<span class="property">name</span>,objStu1.<span class="property">age</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><img src="C:\Users\HASEE\AppData\Roaming\Typora\typora-user-images\image-20220509104209284.png" alt="image-20220509104209284"></p>
+<p><img src="C:\Users\HASEE\AppData\Roaming\Typora\typora-user-images\image-20220509104216396.png" alt="image-20220509104216396"></p>
+<p><img src="C:\Users\HASEE\AppData\Roaming\Typora\typora-user-images\image-20220509104222569.png" alt="image-20220509104222569"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">gray</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://gray9420.github.io/2022/06/01/6-2js%E5%AF%B9%E8%B1%A1/">https://gray9420.github.io/2022/06/01/6-2js%E5%AF%B9%E8%B1%A1/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">gray</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/java%E5%9F%BA%E7%A1%80/">
+                                    <span class="chip bg-color">java基础</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2022/06/01/6-3BOM%E4%B8%8EDOM/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="6-3BOM与DOM">
+                        
+                        <span class="card-title">6-3BOM与DOM</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-01
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/page2/" class="post-category">
+                                    page2
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">java基础</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/06/01/6-1js%E5%9F%BA%E7%A1%80/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="6-1js基础1">
+                        
+                        <span class="card-title">6-1js基础1</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/page2/" class="post-category">
+                                    page2
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">java基础</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">gray9420</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/gray9420" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1666608176@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1666608176" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1666608176" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

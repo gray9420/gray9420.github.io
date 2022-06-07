@@ -1,0 +1,1396 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="3-1java常用类, gray">
+    <meta name="description" content="一、Java常用类123学习java的常用类-学会jdk-api文档的使用,我们把java的常用类又称为java的APIjdk6-api文档翻译的比较准确-人译jdk8-api文档-机译
+
+1、Object（*）Object类是Java语言">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>3-1java常用类 | blogToGray</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">blogToGray</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">blogToGray</div>
+        <div class="logo-desc">
+            
+            飞者非鸟,潜者非鱼
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">3-1java常用类</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/java%E5%9F%BA%E7%A1%80/">
+                                <span class="chip bg-color">java基础</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/page1/" class="post-category">
+                                page1
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-05-18
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="一、Java常用类"><a href="#一、Java常用类" class="headerlink" title="一、Java常用类"></a>一、Java常用类</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">学习java的常用类-学会jdk-api文档的使用,我们把java的常用类又称为java的API</span><br><span class="line">jdk6-api文档翻译的比较准确-人译</span><br><span class="line">jdk8-api文档-机译</span><br></pre></td></tr></table></figure>
+
+<h2 id="1、Object（-）"><a href="#1、Object（-）" class="headerlink" title="1、Object（*）"></a>1、Object（*）</h2><p>Object类是Java语言程序中所有类的父类，即Java程序中的其他所有类都是继承自Object类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Student</span> <span class="variable">stu1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;赵日天&quot;</span>);</span><br><span class="line"><span class="type">Student</span> <span class="variable">stu2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;赵日天&quot;</span>);</span><br><span class="line"><span class="type">Student</span> <span class="variable">stu3</span> <span class="operator">=</span> stu1;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1、equals"><a href="#1、equals" class="headerlink" title="1、equals"></a>1、equals</h3><p>指示其他某个对象是否与此对象“相等”。 </p>
+<p>比较的内存地址</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1.equals</span></span><br><span class="line"><span class="comment"> * 	指示其他某个对象是否与此对象“相等”。 </span></span><br><span class="line"><span class="comment"> * 	比较的内存地址</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">r1</span> <span class="operator">=</span> stu1.equals(stu2);</span><br><span class="line">System.out.println(r1);</span><br><span class="line"><span class="type">boolean</span> <span class="variable">r2</span> <span class="operator">=</span> stu1.equals(stu3);</span><br><span class="line">System.out.println(r2);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、hashCode"><a href="#2、hashCode" class="headerlink" title="2、hashCode"></a>2、hashCode</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 2.hashCode</span></span><br><span class="line"><span class="comment"> * 	获取对象的哈希码值,我们把对象的哈希码值看作对象的内存地址</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">int</span> <span class="variable">hashCode1</span> <span class="operator">=</span> stu1.hashCode();</span><br><span class="line"><span class="type">int</span> <span class="variable">hashCode2</span> <span class="operator">=</span> stu2.hashCode();</span><br><span class="line"><span class="type">int</span> <span class="variable">hashCode3</span> <span class="operator">=</span> stu3.hashCode();</span><br><span class="line">System.out.println(hashCode1);</span><br><span class="line">System.out.println(hashCode2);</span><br><span class="line">System.out.println(hashCode3);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、toString"><a href="#3、toString" class="headerlink" title="3、toString"></a>3、toString</h3><p>如果子类没有重写父类Object类的toString方法，这个时候直接输出对象，结果是对象的内存地址</p>
+<p>如果子类重写父类Object类中的toString方法，这个时候直接输出对象，结果是执行子类重写后的toStirng方法,输出对象的字符串表现形式</p>
+<h3 id="3、getClass-了解"><a href="#3、getClass-了解" class="headerlink" title="3、getClass(了解)"></a>3、getClass(了解)</h3><p>获取创建该对象的类路径</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(stu1.getClass());</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-finalize"><a href="#5-finalize" class="headerlink" title="5.finalize()"></a>5.finalize()</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">垃圾回收器</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * == </span></span><br><span class="line"><span class="comment"> * 	如果作用于基本数据类型,比较值是否相等</span></span><br><span class="line"><span class="comment"> * 	如果作用于引用数据类型,比较内存地址是否相等</span></span><br><span class="line"><span class="comment"> * equals</span></span><br><span class="line"><span class="comment"> * 	引用数据类型的比较,建议使用equals</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="2、基本数据类型的包装类（-）"><a href="#2、基本数据类型的包装类（-）" class="headerlink" title="2、基本数据类型的包装类（*）"></a>2、基本数据类型的包装类（*）</h2><p>java语言是一个面向对象的语言，但是java中的基本数据类型却不是面向对象的，但是我们在实际使用中经常将基本数据类型转换成对象，便于操作，这时，我们就需要用的基本数据类型的包装类！</p>
+<p>包装类的继承关系：</p>
+<p><img src="https://woniumd.oss-cn-hangzhou.aliyuncs.com/java/chenyun/20210201121539.png" alt="image-20210201121538988"></p>
+<p><img src="https://woniumd.oss-cn-hangzhou.aliyuncs.com/java/chenyun/20210201115332.png" alt="image-20210201115331936"></p>
+<h3 id="1-Integer"><a href="#1-Integer" class="headerlink" title="1.Integer"></a>1.Integer</h3><h4 id="1-赋值"><a href="#1-赋值" class="headerlink" title="1.赋值"></a>1.赋值</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1.赋值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//1.数值</span></span><br><span class="line">	<span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">	<span class="type">Integer</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line">	</span><br><span class="line"><span class="comment">//2.字符</span></span><br><span class="line">	<span class="type">char</span> <span class="variable">c1</span> <span class="operator">=</span> <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">	<span class="type">Character</span> <span class="variable">c2</span> <span class="operator">=</span> <span class="string">&#x27;b&#x27;</span>;</span><br><span class="line"><span class="comment">//3.布尔</span></span><br><span class="line">	<span class="type">boolean</span> <span class="variable">f1</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="type">Boolean</span> <span class="variable">f2</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"><span class="comment">//4.小数</span></span><br><span class="line">	<span class="type">double</span> <span class="variable">d1</span> <span class="operator">=</span> <span class="number">3.14</span>;</span><br><span class="line">	<span class="type">Double</span> <span class="variable">d2</span> <span class="operator">=</span> <span class="number">3.14</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="2属性和方法"><a href="#2属性和方法" class="headerlink" title="2属性和方法"></a>2属性和方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">		<span class="comment">//1.int最大值</span></span><br><span class="line">			System.out.println(Integer.MAX_VALUE);</span><br><span class="line">		<span class="comment">//2.int最小值</span></span><br><span class="line">			System.out.println(Integer.MIN_VALUE);</span><br><span class="line">		<span class="comment">//3.把字符串转整数--字符串的内容必须看着就像数值</span></span><br><span class="line">			<span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;123&quot;</span>;</span><br><span class="line">			<span class="type">int</span> <span class="variable">num1</span> <span class="operator">=</span> Integer.parseInt(s1);</span><br><span class="line">			System.out.println(num1);</span><br><span class="line">		<span class="comment">//4.整数转字符串</span></span><br><span class="line"><span class="comment">//			int num2 = 2;</span></span><br><span class="line"><span class="comment">//			String s3 = num2+&quot;&quot;;</span></span><br><span class="line">			<span class="type">Integer</span> <span class="variable">num2</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">			<span class="type">String</span> <span class="variable">s4</span> <span class="operator">=</span> num2.toString();</span><br><span class="line">			System.out.println(s4);</span><br></pre></td></tr></table></figure>
+
+<h4 id="3Integer跟int值的区别"><a href="#3Integer跟int值的区别" class="headerlink" title="3Integer跟int值的区别"></a>3Integer跟int值的区别</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Intege有属性,有方法</span><br><span class="line">在java中所有的引用类型都可以赋<span class="literal">null</span>值，<span class="literal">null</span>表示空的意思</span><br><span class="line">Integer比<span class="type">int</span>多一个值<span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4自动装箱和自动拆箱"><a href="#4自动装箱和自动拆箱" class="headerlink" title="4自动装箱和自动拆箱"></a>4自动装箱和自动拆箱</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">自动装箱</span><br><span class="line">    自动把<span class="type">int</span>类型的数字转换成Integer,该过程自动调用valueOf(<span class="type">int</span> i) </span><br><span class="line">    <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">b</span> <span class="operator">=</span> a; 等价于 <span class="type">Integer</span> <span class="variable">b</span> <span class="operator">=</span> Integer.valueOf(<span class="number">100</span>) </span><br><span class="line">自动拆箱</span><br><span class="line">    自动把Integer类型的数字转换成<span class="type">int</span>，该过程自动调用 intValue()</span><br><span class="line">	<span class="type">Integer</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line">	<span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> n;<span class="comment">//该过程等价于int num = n.intValue();</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3、String（-）"><a href="#3、String（-）" class="headerlink" title="3、String（*）"></a>3、String（*）</h2><h3 id="1、获取方法"><a href="#1、获取方法" class="headerlink" title="1、获取方法"></a>1、获取方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int length()</td>
+<td>获取字符串的长度（*）</td>
+</tr>
+<tr>
+<td>char charAt(int index)</td>
+<td>获取指定位置的字符(index  下标 )</td>
+</tr>
+<tr>
+<td>int indexOf(String str)</td>
+<td>获取指定字符首次出现的位置</td>
+</tr>
+<tr>
+<td>int lastIndexOf(String str)</td>
+<td>获取指定字符最后一次出现的位置</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 一.获取方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//1、获取长度</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2.获取指定下标位置的字符(字符串中的每个字符都有下标,下标从0开始)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//3.获取指定字符首次出现的下标</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2、判断方法（-）"><a href="#2、判断方法（-）" class="headerlink" title="2、判断方法（*）"></a>2、判断方法（*）</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean endswith(String str)</td>
+<td>测试此字符串是否以指定的后缀结束</td>
+</tr>
+<tr>
+<td>boolena isEmpty()___ length() &#x3D;0;</td>
+<td>字符串长度是否为0  jdk1.6新特性</td>
+</tr>
+<tr>
+<td>boolean contains(CharSequences s)</td>
+<td>是否包含指定值  应用：搜索</td>
+</tr>
+<tr>
+<td>boolean equals(Object  objec)</td>
+<td>判断两个字符串值是否相等</td>
+</tr>
+<tr>
+<td>boolean equalsIgnoreCase(String str)</td>
+<td>忽略大小写是否相等</td>
+</tr>
+<tr>
+<td>startsWith(String prefix)</td>
+<td>测试此字符串是否以指定的前缀开始。</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 二.判断方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//1.equals--String重写了Object类的equals方法,不再比较内存地址,而是比较值是否相等</span></span><br><span class="line">System.out.println(<span class="string">&quot;hello&quot;</span>.equals(<span class="string">&quot;world&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">&quot;www.woniuxy.com&quot;</span>;</span><br><span class="line"><span class="comment">//2.判断字符串是否以指定的后缀结束</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">r1</span> <span class="operator">=</span> s2.endsWith(<span class="string">&quot;com&quot;</span>);</span><br><span class="line">System.out.println(r1);</span><br><span class="line"><span class="comment">//3.判断字符串是否为空--判断长度</span></span><br><span class="line"><span class="type">int</span> <span class="variable">len2</span> <span class="operator">=</span> s2.length();</span><br><span class="line">System.out.println(len2==<span class="number">0</span>?<span class="string">&quot;是空字符串&quot;</span>:<span class="string">&quot;不是空字符串&quot;</span>);</span><br><span class="line"><span class="comment">//4.判断字符串是否包含指定的值</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">r2</span> <span class="operator">=</span> s2.contains(<span class="string">&quot;won&quot;</span>);</span><br><span class="line">System.out.println(r2);</span><br><span class="line"><span class="comment">//5.比较两个字符串是否相等,并忽略大小写</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> <span class="string">&quot;WWW.woniuxy.COM&quot;</span>;</span><br><span class="line"><span class="type">boolean</span> <span class="variable">r3</span> <span class="operator">=</span> s2.equalsIgnoreCase(s3);</span><br><span class="line">System.out.println(r3);</span><br><span class="line"><span class="comment">//6.判断字符串是否以指定的内容开头</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">r4</span> <span class="operator">=</span> s2.startsWith(<span class="string">&quot;www&quot;</span>);</span><br><span class="line">System.out.println(r4);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、转换方法"><a href="#3、转换方法" class="headerlink" title="3、转换方法"></a>3、转换方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>String toUpperCase()</td>
+<td>小写转大写</td>
+</tr>
+<tr>
+<td>String toLowerCase()</td>
+<td>大写转小写</td>
+</tr>
+<tr>
+<td>char[] toCharArray()</td>
+<td>将字符串转换为字符数组</td>
+</tr>
+<tr>
+<td>new  String(char[] array)    Arrays.toString(arr);</td>
+<td>将字符数组转为字符串</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 三.转换</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="comment">//1.小写转大写</span></span><br><span class="line"><span class="type">String</span> <span class="variable">newS1</span> <span class="operator">=</span> s1.toUpperCase();</span><br><span class="line">System.out.println(newS1);</span><br><span class="line"><span class="comment">//2.大写转小写</span></span><br><span class="line"><span class="type">String</span> <span class="variable">newS2</span> <span class="operator">=</span> newS1.toLowerCase();</span><br><span class="line">System.out.println(newS2);</span><br><span class="line"><span class="comment">//3.字符串转字符数组</span></span><br><span class="line"><span class="type">char</span>[] arr = s1.toCharArray();</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">	System.out.println(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//4.字符数组转字符串</span></span><br><span class="line"><span class="type">char</span>[] array = &#123;<span class="string">&#x27;w&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line"><span class="type">String</span> <span class="variable">newS3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(array);</span><br><span class="line">System.out.println(newS3);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、其他方法（-）"><a href="#4、其他方法（-）" class="headerlink" title="4、其他方法（*）"></a>4、其他方法（*）</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>String replace(char oldChar, char newChar)</td>
+<td>使用指定的值替换替换此字符串所有匹配的字符</td>
+</tr>
+<tr>
+<td>String[] split(String regex)</td>
+<td>根据指定字符将字符串切割为数组</td>
+</tr>
+<tr>
+<td>String substring(int beginIndex)</td>
+<td>从指定位置截取到最后</td>
+</tr>
+<tr>
+<td>String substring(int beginIndex, int endIndex)</td>
+<td>截取指定长度的字符串</td>
+</tr>
+<tr>
+<td>String trim()</td>
+<td>去除字符串首尾空格</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 四.其它方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;woniuxy&quot;</span>;</span><br><span class="line"><span class="comment">//1.替换--被替换的内容,替换后的内容</span></span><br><span class="line"><span class="type">String</span> <span class="variable">newStr1</span> <span class="operator">=</span> str.replace(<span class="string">&quot;n&quot;</span>, <span class="string">&quot;老虎&quot;</span>);</span><br><span class="line">System.out.println(newStr1);</span><br><span class="line"><span class="comment">//2.切割(注意,不能对点和*进行切割)</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;aa-bb-cc-dd&quot;</span>;</span><br><span class="line">String[] arr = str2.split(<span class="string">&quot;-&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">	System.out.println(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//3.截取</span></span><br><span class="line"><span class="comment">//a.从指定下标截取到字符串末尾</span></span><br><span class="line"><span class="type">String</span> <span class="variable">newStr2</span> <span class="operator">=</span> str.substring(<span class="number">2</span>);</span><br><span class="line">System.out.println(newStr2);</span><br><span class="line"><span class="comment">//b.指定截取的下标区间--不包含结束下标</span></span><br><span class="line"><span class="type">String</span> <span class="variable">newStr3</span> <span class="operator">=</span> str.substring(<span class="number">2</span>, <span class="number">5</span>);</span><br><span class="line">System.out.println(newStr3);</span><br><span class="line"><span class="comment">//4去除字符串的首尾空格</span></span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="string">&quot;    aaa    bbb    &quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">newStr4</span> <span class="operator">=</span> str3.trim();</span><br><span class="line">System.out.println(newStr4);</span><br><span class="line"><span class="comment">//5.去除字符串的所有空格</span></span><br><span class="line"><span class="type">String</span> <span class="variable">newStr5</span> <span class="operator">=</span> str3.replace(<span class="string">&quot; &quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">System.out.println(newStr5);</span><br></pre></td></tr></table></figure>
+
+<h3 id="6、补充"><a href="#6、补充" class="headerlink" title="6、补充"></a>6、补充</h3><h4 id="a-字符串的遍历"><a href="#a-字符串的遍历" class="headerlink" title="a.字符串的遍历"></a>a.字符串的遍历</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.woniuxy.lesson3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test4</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">		 * 	字符串的遍历</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;www.woniuxy.com&quot;</span>;</span><br><span class="line">		<span class="comment">//方式一</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;str.length();i++) &#123;</span><br><span class="line">			<span class="type">char</span> <span class="variable">c</span> <span class="operator">=</span> str.charAt(i);</span><br><span class="line">			System.out.println(c);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">&quot;----------------------&quot;</span>);</span><br><span class="line">		<span class="comment">//方式二</span></span><br><span class="line">		<span class="type">char</span>[] arr = str.toCharArray();</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">			System.out.println(arr[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、Arrays"><a href="#4、Arrays" class="headerlink" title="4、Arrays"></a>4、Arrays</h2><p>数组工具类型，可以让我们非常方便的去操作数组</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">		<span class="comment">//创建数组</span></span><br><span class="line">		<span class="type">int</span>[] arr = &#123;<span class="number">2</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">5</span>&#125;;</span><br><span class="line">		<span class="comment">//1.数组复制(扩容)</span></span><br><span class="line"><span class="comment">//		int[] newArr = Arrays.copyOf(arr,7);</span></span><br><span class="line"><span class="comment">//		for (int i = 0; i &lt; newArr.length; i++) &#123;</span></span><br><span class="line"><span class="comment">//			System.out.println(newArr[i]);</span></span><br><span class="line"><span class="comment">//		&#125;</span></span><br><span class="line">		<span class="comment">//2.数组排序--升序排序</span></span><br><span class="line">		Arrays.sort(arr);</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">			System.out.println(arr[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//3.数组查找--使用二分法去数组中查找元素,数组必须是升序的,结果是元素在数组中的下标,没找到结果为负数</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> Arrays.binarySearch(arr, <span class="number">10</span>);</span><br><span class="line">		System.out.println(index);</span><br><span class="line">		<span class="comment">//4.数组转字符串</span></span><br><span class="line">		<span class="comment">//直接输出数组输出的是数组的内存地址</span></span><br><span class="line">		System.out.println(arr);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//返回指定数组内容的字符串表示形式。</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> Arrays.toString(arr);</span><br><span class="line">		System.out.println(s);</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、Math-类"><a href="#5、Math-类" class="headerlink" title="5、Math 类"></a>5、Math 类</h2><p>Math执行基本数学运算的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.PI</span></span><br><span class="line">System.out.println(Math.PI);</span><br><span class="line"><span class="comment">//2.取绝对值--负数的绝对值是正数,正数的绝对值是它本身</span></span><br><span class="line">System.out.println(Math.abs(-<span class="number">1</span>));</span><br><span class="line"><span class="comment">//3.向上取整</span></span><br><span class="line">System.out.println(Math.ceil(<span class="number">4.2</span>));</span><br><span class="line"><span class="comment">//4.向下取整</span></span><br><span class="line">System.out.println(Math.floor(<span class="number">4.9</span>));</span><br><span class="line"><span class="comment">//5.四舍五入</span></span><br><span class="line">System.out.println(Math.round(<span class="number">4.4</span>));</span><br><span class="line"><span class="comment">//6.随机数  0&lt;=Math.random()&lt;1</span></span><br><span class="line"><span class="type">double</span> <span class="variable">r</span> <span class="operator">=</span> Math.random();</span><br><span class="line">System.out.println(r);</span><br><span class="line"><span class="comment">//生成1-10之间的整数</span></span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> (<span class="type">int</span>)(Math.random()*<span class="number">10</span>)+<span class="number">1</span>;</span><br><span class="line">System.out.println(n);</span><br><span class="line"><span class="comment">//7.求m的n次方</span></span><br><span class="line">System.out.println(Math.pow(<span class="number">2</span>, <span class="number">3</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、UUID"><a href="#6、UUID" class="headerlink" title="6、UUID"></a>6、UUID</h2><p><strong>表示通用唯一标识符</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * UUID</span></span><br><span class="line"><span class="comment"> * 	生成32位随机字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">String</span> <span class="variable">uuid</span> <span class="operator">=</span> UUID.randomUUID().toString();</span><br><span class="line">System.out.println(uuid);</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、Random"><a href="#7、Random" class="headerlink" title="7、Random"></a>7、Random</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回一个伪随机数，它是取自此随机数生成器序列的、在 0（包括）和指定值（不包括）之间均匀分布的 int 值。</span></span><br><span class="line">		<span class="comment">//返回一个伪随机数，它是取自此随机数生成器序列的、在 0（包括）和指定值（不包括）之间均匀分布的 int 值。</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">ran</span> <span class="operator">=</span> random.nextInt(<span class="number">11</span>);</span><br><span class="line">		System.out.println(ran);</span><br></pre></td></tr></table></figure>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">gray</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://gray9420.github.io/2022/05/18/3-1java%E5%B8%B8%E7%94%A8%E7%B1%BB/">https://gray9420.github.io/2022/05/18/3-1java%E5%B8%B8%E7%94%A8%E7%B1%BB/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">gray</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/java%E5%9F%BA%E7%A1%80/">
+                                    <span class="chip bg-color">java基础</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2022/05/18/3-2java%E5%B8%B8%E7%94%A8%E7%B1%BB2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="3-2java常用类2">
+                        
+                        <span class="card-title">3-2java常用类2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/page1/" class="post-category">
+                                    page1
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">java基础</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/05/18/2-5%E5%8C%BF%E5%90%8D%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="2-5匿名对象和类">
+                        
+                        <span class="card-title">2-5匿名对象和类</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/page1/" class="post-category">
+                                    page1
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">java基础</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">gray9420</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/gray9420" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1666608176@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1666608176" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1666608176" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
